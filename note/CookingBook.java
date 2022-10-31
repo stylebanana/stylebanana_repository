@@ -79,22 +79,56 @@ public class CookingBook{
         //表示食谱数量的int
         private int numberOfRecipes; 
 
-        public void addRecipe (Recipe r){
-            if (this.listOfRecipes == null){
-                setListOfRecipes(new Recipe[]{r});
-                setNumberOfRecipes(1);
-            }
-            }
 
-        private void setNumberOfRecipes(int numberOfRecipes) {
-            this.numberOfRecipes = numberOfRecipes;
+        public Recipe[] getListOfRecipes() {
+            return listOfRecipes;
         }
 
-        private void setListOfRecipes(Recipe[] listofRecipes) {
+
+        public void setListOfRecipes(Recipe[] listOfRecipes) {
             this.listOfRecipes = listOfRecipes;
         }
 
-        
 
+        public int getNumberOfRecipes() {
+            return numberOfRecipes;
+        }
+
+
+        public void setNumberOfRecipes(int numberOfRecipes) {
+            this.numberOfRecipes = numberOfRecipes;
+        }
+
+
+        //添加菜谱方法
+        public void addRecipe (Recipe r){
+            if (this.listOfRecipes == null){
+                //如果listOfRecipes是空的话，在set方法中new一个Recipe[]将这个数组类型的{r}放进数组里面去
+                setListOfRecipes(new Recipe[]{r});
+                //对书谱的数量进行赋值
+                setNumberOfRecipes(1);
+            }else{
+                this.numberOfRecipes++;
+                this.listOfRecipes = sortByName(this.listOfRecipes,r);
+            }
+        }   
+
+        public static Recipe[] sortByName(Recipe[] listOfRecipes,Recipe r){
+
+            if (listOfRecipes == null || listOfRecipes.length == 0){
+                return null;
+            }
+            //如果已经有了listofRecipes,再加进去一个Recipe,那么加进去的数组的长度就要加大1
+            Recipe[] sortArray = new Recipe[listOfRecipes.length+1];
+            int index = 0;
+            Boolean addFlag = false;
+
+            for(int i=0, i<listOfRecipes.length, i++){
+                String name = r.getName();
+                String nextName = listOfRecipes[i].getName();
+            }
+
+            return sortArray;
+        }
     }
 }
